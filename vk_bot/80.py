@@ -1,15 +1,17 @@
+import random
 import vk_api
 from vk_api.longpoll import VkLongPoll, VkEventType
 from course import get_course
-import random
-from wiki import get_article 
-from tok import token
+from wiki import get_article
+
 # pip install beautifulsoup4
 # pip install requests
 # pip install vk-api
 # pip uninstall vk_api
 
 # pip install wikipedia
+with open("Key.txt") as file:
+    token = file.readline()
 
 vk_session = vk_api.VkApi(token=token)
 vk = vk_session.get_api()

@@ -20,7 +20,7 @@ for event in longpoll.listen():
         user_id = event.user_id
         random_id = random.randint(1, 10**10) # <----
         if msg == "планеты":
-            vk.messages.send(user_id=user_id, random_id=random_id, message = Parsing.planet(Parsing.urls[0]))
+            vk.messages.send(user_id=user_id, random_id=random_id, message = Parsing.planet(Parsing.urls))
         elif msg == "доллар":
             responce = f"{get_course('R01235')} рублей за доллар"
             vk.messages.send(user_id=user_id, random_id=random_id, message = responce)

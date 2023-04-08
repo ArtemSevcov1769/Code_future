@@ -22,8 +22,9 @@ for event in longpoll.listen():
         if msg == "планеты":
             vk.messages.send(user_id=user_id, random_id=random_id, message = Parsing.planet(Parsing.urls))
         elif msg.startswith('-к'):
-            val = msg[5:]
-            responce = f"{get_course(course.val_2)}"
+            val = msg[3:]
+            responce = f"{get_course(val)}"
+            print(responce)
             vk.messages.send(user_id=user_id, random_id=random_id, message = responce)
         elif msg == "корабль":
             vk.messages.send(user_id=user_id, random_id=random_id, message = starships.ship(starships.urls))

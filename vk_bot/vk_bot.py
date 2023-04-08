@@ -4,6 +4,7 @@ from vk_api.longpoll import VkLongPoll, VkEventType
 from course import get_course
 from wiki import get_article
 import Parsing
+import starships
 with open("Key.txt") as file:
     token = file.readline()
 
@@ -20,9 +21,14 @@ for event in longpoll.listen():
         random_id = random.randint(1, 10**10) # <----
         if msg == "планеты":
             vk.messages.send(user_id=user_id, random_id=random_id, message = Parsing.planet(Parsing.urls[0]))
-        elif msg == "-к":
+        elif msg == "доллар":
             responce = f"{get_course('R01235')} рублей за доллар"
             vk.messages.send(user_id=user_id, random_id=random_id, message = responce)
+        elif msg == "евро":
+            responce = f"{get_course('R01239')} рублей за евро"
+            vk.messages.send(user_id=user_id, random_id=random_id, message = responce)
+        elif msg == "корабль":
+            vk.messages.send(user_id=user_id, random_id=random_id, message = starships.ship(starships.urls))
         elif msg.startswith("-в"):
             article = msg[2:]
             responce = get_article(article=article)

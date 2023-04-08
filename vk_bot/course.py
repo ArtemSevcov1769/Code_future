@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
-
+import vk_bot
 url = "http://www.cbr.ru/scripts/XML_daily.asp?"
 
 today = datetime.today()
@@ -13,7 +13,9 @@ response = requests.get(url, params=payload)
 
 xml = BeautifulSoup(response.content, 'html.parser')
 
-
+def valute(val):
+    if val == 'доллар':
+        return 'R01235'
 def get_course(currency):
     return str(xml.find("valute", {'id': currency}).value.text)
 

@@ -21,11 +21,9 @@ for event in longpoll.listen():
         random_id = random.randint(1, 10**10) # <----
         if msg == "планеты":
             vk.messages.send(user_id=user_id, random_id=random_id, message = Parsing.planet(Parsing.urls))
-        elif msg == "доллар":
-            responce = f"{get_course('R01235')} рублей за доллар"
-            vk.messages.send(user_id=user_id, random_id=random_id, message = responce)
-        elif msg == "евро":
-            responce = f"{get_course('R01239')} рублей за евро"
+        elif msg.startswith('-к'):
+            val = msg[5:]
+            responce = f"{get_course(course.val_2)}"
             vk.messages.send(user_id=user_id, random_id=random_id, message = responce)
         elif msg == "корабль":
             vk.messages.send(user_id=user_id, random_id=random_id, message = starships.ship(starships.urls))

@@ -5,6 +5,10 @@ from course import get_course
 from wiki import get_article
 import Parsing
 import starships
+hi = ['Привет',
+      'Салам Уалейкум',
+      'Здравствуй'
+      ]
 with open("Key.txt") as file:
     token = file.readline()
 
@@ -18,16 +22,20 @@ for event in longpoll.listen():
         msg = event.text.lower()
         print(msg)
         user_id = event.user_id
-        random_id = random.randint(1, 10**10) # <----
-        if msg == "планеты":
-            vk.messages.send(user_id=user_id, random_id=random_id, message = Parsing.planet(Parsing.urls))
+        random_id = random.randint(1, 10**10)
+        if msg == 'привет':
+            responce = random.choice(hi)
+            vk.messages.send(user_id=user_id, random_id=random_id, message= responce)
+        elif msg == "планеты":
+            responce = Parsing.planet(Parsing.urls)
+            vk.messages.send(user_id=user_id, random_id=random_id, message = responce)
         elif msg.startswith('-к'):
             val = msg[3:]
             responce = f"{get_course(val)}"
-            print(responce)
             vk.messages.send(user_id=user_id, random_id=random_id, message = responce)
         elif msg == "корабль":
-            vk.messages.send(user_id=user_id, random_id=random_id, message = starships.ship(starships.urls))
+            responce = starships.ship(starships.urls)
+            vk.messages.send(user_id=user_id, random_id=random_id, message = responce)
         elif msg.startswith("-в"):
             article = msg[2:]
             responce = get_article(article=article)

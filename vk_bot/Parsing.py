@@ -10,11 +10,6 @@ urls = [
 ]
 
 def planet(api):
-    global max_diameter
-    global max_planet
-    global d
-    global a
-    global pl
     max_diameter = 0
     max_planet = ''
     for api in urls:
@@ -31,9 +26,4 @@ def planet(api):
     return (f"Планета {max_planet} имеет наибольший диаметр - {max_diameter} км.")
 
 if __name__ == '__main__':
-    print(planet(urls[0]))
-    print(planet(urls[1]))
-    print(planet(urls[2]))
-    print(planet(urls[3]))
-    print(planet(urls[4]))
-    print(planet(urls[5]))
+    print(planet(urls))

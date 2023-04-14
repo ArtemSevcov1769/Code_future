@@ -8,11 +8,6 @@ urls = [
 ]
 
 def ship(api):
-    global max_speed
-    global max_ship
-    global s
-    global a
-    global sh
     max_speed = 0
     max_ship = ''
     for api in urls:
@@ -28,7 +23,4 @@ def ship(api):
     return (f"Корабль {max_ship} имеет наибольшую скорость - {max_speed}.")
 
 if __name__ == '__main__':
-    print(ship(urls[0]))
-    print(ship(urls[1]))
-    print(ship(urls[2]))
-    print(ship(urls[3]))
+    print(ship(urls))

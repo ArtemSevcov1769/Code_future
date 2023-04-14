@@ -16,7 +16,8 @@ vk_session = vk_api.VkApi(token=token)
 vk = vk_session.get_api()
 upload = vk_api.VkUpload(vk)
 longpoll = VkLongPoll(vk_session)
-
+def send_message(resp):
+    vk.messages.send(user_id=user_id, random_id=random_id, message=resp)
 for event in longpoll.listen():
     if event.type == VkEventType.MESSAGE_NEW and event.to_me:
         msg = event.text.lower()
@@ -25,21 +26,21 @@ for event in longpoll.listen():
         random_id = random.randint(1, 10**10)
         if msg == 'привет':
             responce = random.choice(hi)
-            vk.messages.send(user_id=user_id, random_id=random_id, message= responce)
+            send_message(responce)
         elif msg == "планеты":
             responce = Parsing.planet(Parsing.urls)
-            vk.messages.send(user_id=user_id, random_id=random_id, message = responce)
+            send_message(responce)
         elif msg.startswith('-к'):
             val = msg[3:]
             responce = f"{get_course(val)}"
-            vk.messages.send(user_id=user_id, random_id=random_id, message = responce)
+            send_message(responce)
         elif msg == "корабль":
             responce = starships.ship(starships.urls)
-            vk.messages.send(user_id=user_id, random_id=random_id, message = responce)
+            send_message(responce)
         elif msg.startswith("-в"):
             article = msg[2:]
             responce = get_article(article=article)
-            vk.messages.send(user_id=user_id, random_id=random_id, message = responce)
+            send_message(responce)
         else:
             responce = f"неизвестная команда"
-            vk.messages.send(user_id=user_id, random_id=random_id, message = responce)
+            send_message(responce)

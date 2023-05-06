@@ -5,18 +5,11 @@ url = "http://www.cbr.ru/scripts/XML_daily.asp?"
 today = datetime.today()
 today = today.strftime("%d/%m/%Y")
 payload = {"date_req": today}
-
 response = requests.get(url, params=payload)
-
 xml = BeautifulSoup(response.content, 'html.parser')
-
-def get_course(currency):
-    global i
-    if currency == 'доллар':
-        i = 'R01235'
-    elif currency == 'евро':
-        i = 'R01239'
+def get_course(idn):
     try:
-        return str(xml.find("valute", {'id': i}).value.text)
+        yield str(xml.find("valute", {'id': idn}).value.text)
+        yield str(xml.finde('valute', {'id': idn}.name.text))
     except:
-        return f"не удалось найти информацию"
+        yield f"Такая валюта не найдена"

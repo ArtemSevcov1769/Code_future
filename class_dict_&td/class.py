@@ -1,18 +1,18 @@
 class Human:
     def __init__(self, name, height, age):
-        self.__name = name
+        self._name = name
         self._height = height
         self._age = age
 
     @property
     def name(self):
-        return self.__name
-        return self._height
+        return self._name
+
 
     @name.setter
     def name(self, name):
-        if len(name) < 5:
-            self.__name = name
+        if len(name) <= 5:
+            self._name = name
 
     @property
     def height(self):

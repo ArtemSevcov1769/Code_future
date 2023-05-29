@@ -7,12 +7,12 @@ today = datetime.today()
 today = today.strftime("%d/%m/%Y")
 payload = {"date_req": today}
 response = requests.get(url, params=payload)
-htm = BeautifulSoup(response.content, 'html.parser')
+htm = BeautifulSoup(response.content, 'xml')
 @contextlib.contextmanager
 def get_course(idn):
-    b = str(htm.find("valute", {'id': str(idn)}).value.text)
-    c = str(htm.find("valute", {'id': str(idn)}).find('name').text)
-    d = str(htm.find("valute", {'id': str(idn)}).nominal.text)
+    b = str(htm.find("Valute", {'ID': str(idn)}).Value.text)
+    c = str(htm.find("Valute", {'ID': str(idn)}).find('Name').text)
+    d = str(htm.find("Valute", {'ID': str(idn)}).Nominal.text)
     try:
         yield f'({d} шт.) {c} стоит(ят) {b}руб'
     except:
